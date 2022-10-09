@@ -1,0 +1,13 @@
+[submodule "modules/modalbind"]
+	path = modules/modalbind
+	url = https://github.com/crater2150/awesome-modalbind
+	branch = new-keygrabber
+[submodule "modules/color"]
+	path = modules/color
+	url = https://github.com/andOrlando/color
+[submodule "modules/rubato"]
+	path = modules/rubato
+	url = https://github.com/andOrlando/rubato
+[submodule "modules/bling"]
+	path = modules/bling
+	url = https://github.com/BlingCorp/bling
