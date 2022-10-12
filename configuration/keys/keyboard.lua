@@ -47,7 +47,7 @@ awful.keyboard.append_global_keybindings {
     awful.key({ mod }, "Return", function() awful.spawn(Terminal) end, {
         description = "open a terminal", group = "launcher"
     }),
-    awful.key({ mod }, "p", function() awful.spawn(Paths.home .. "/.config/rofi/bin/launcher_misc") end, {
+    awful.key({ mod }, "p", function() awful.spawn(Paths.home .. "/.config/rofi/launchers/misc/launcher.sh") end, {
         description = "Apps", group = "launcher"
     }),
     awful.key({ mod }, "b", function() awful.spawn("firefox") end, {
