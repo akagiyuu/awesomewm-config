@@ -42,7 +42,7 @@ local logout_command = function()
 end
 
 local lock_command = function()
-    awful.spawn(Paths.home .. "/Scripts/lock")
+    awful.spawn(Paths.home .. "/.local/bin/lock")
     awesome.emit_signal("module::powermenu:hide")
 end
 

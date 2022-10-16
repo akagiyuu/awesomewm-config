@@ -164,13 +164,13 @@ awful.keyboard.append_global_keybindings {
 }
 
 awful.keyboard.append_global_keybindings {
-    awful.key({}, "Print", function() awful.util.spawn("/home/yuu/Scripts/screenshot") end, {
+    awful.key({}, "Print", function() awful.util.spawn(Paths.home .. "/.local/bin/screenshot") end, {
         description = "Fullscreen", group = "Screenshot"
     }),
-    awful.key({ mod }, "Print", function() awful.util.spawn("/home/yuu/Scripts/screenshot -o '-s'") end, {
+    awful.key({ mod }, "Print", function() awful.util.spawn(Paths.home .. "/.local/bin/screenshot -o '-s'") end, {
         description = "Area", group = "Screenshot"
     }),
-    awful.key({ mod, ctrl }, "Print", function() awful.util.spawn("/home/yuu/Scripts/rofi-screenshot") end, {
+    awful.key({ mod, ctrl }, "Print", function() awful.util.spawn(Paths.home .. "/.local/bin/rofi-screenshot") end, {
         description = "Menu", group = "Screenshot"
     }),
     awful.key({ mod }, "v", function()
@@ -201,9 +201,7 @@ client.connect_signal("request::default_keybindings", function()
         awful.key({ mod }, "t", function(c) c.ontop = not c.ontop end, {
             description = "toggle keep on top", group = "client"
         }),
-        awful.key({ mod, }, "n", function(c) c.minimized = true end, {
-            description = "minimize", group = "client"
-        }),
+
         awful.key({ mod, }, "m", function(c)
             c.maximized = not c.maximized
             c:raise()
@@ -216,6 +214,10 @@ client.connect_signal("request::default_keybindings", function()
             c.maximized_horizontal = not c.maximized_horizontal
             c:raise()
         end, { description = "(un)maximize horizontally", group = "client" }),
+
+        awful.key({ mod, }, "n", function(c) c.minimized = true end, {
+            description = "minimize", group = "client"
+        }),
         awful.key({ mod, ctrl }, "n", function()
             local c = awful.client.restore()
             if c then c:activate { raise = true, context = "key.unminimize" } end
