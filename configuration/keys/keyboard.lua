@@ -1,5 +1,6 @@
 local awful         = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
+local beautiful     = require('beautiful')
 local modalbind     = require("modules.modalbind")
 -- local rubato        = require("modules.rubato")
 local shift         = "Shift"
@@ -7,12 +8,6 @@ local ctrl          = "Control"
 local alt           = "Mod2"
 
 local modes = {
-    swap = {
-        { "j", function() awful.client.swap.bydirection("down") end, "swap with next client by index" },
-        { "k", function() awful.client.swap.bydirection("up") end, "swap with previous client by index" },
-        { "h", function() awful.client.swap.bydirection("left") end, "swap with previous client by index" },
-        { "l", function() awful.client.swap.bydirection("right") end, "swap with previous client by index" },
-    },
     volume = {
         { "d", function()
             awesome.emit_signal("signal::volume")
@@ -59,6 +54,10 @@ awful.keyboard.append_global_keybindings {
     awful.key({ mod }, "`", function() awful.screen.focused().quake:toggle() end, {
         description = 'Quake terminal', group = 'launcher'
     }),
+    awful.key({ mod, ctrl }, "t", function()
+        local wibar = awful.screen.focused().wibar
+        wibar.visible = not wibar.visible
+    end, { description = 'Toggle wibar' }),
 }
 
 awful.keyboard.append_global_keybindings {
@@ -81,22 +80,28 @@ awful.keyboard.append_global_keybindings {
 }
 
 awful.keyboard.append_global_keybindings {
-    awful.key({ mod, shift }, "s", function()
-        modalbind.grab {
-            keymap = modes.swap,
-            name = "Swap Client",
-            stay_in_mode = true,
-        }
-    end),
     awful.key({ mod }, "Tab", function() awesome.emit_signal("bling::window_switcher::turn_on") end, {
         description = "Window Switcher", group = "launcher"
     }),
-    awful.key({ mod, }, "l", function() awful.tag.incmwfact(0.05) end, {
+    awful.key({ mod, ctrl }, "l", function() awful.tag.incmwfact(0.05) end, {
         description = "increase master width factor", group = "layout"
     }),
 
-    awful.key({ mod, }, "h", function() awful.tag.incmwfact(-0.05) end, {
+    awful.key({ mod, ctrl }, "h", function() awful.tag.incmwfact(-0.05) end, {
         description = "decrease master width factor", group = "layout"
+    }),
+
+    awful.key({ mod }, "j", function() awful.client.swap.bydirection("down") end, {
+        description = "swap with next client by index"
+    }),
+    awful.key({ mod }, "k", function() awful.client.swap.bydirection("up") end, {
+        description = "swap with previous client by index"
+    }),
+    awful.key({ mod }, "h", function() awful.client.swap.bydirection("left") end, {
+        description = "swap with previous client by index"
+    }),
+    awful.key({ mod }, "l", function() awful.client.swap.bydirection("right") end, {
+        description = "swap with previous client by index"
     }),
     awful.key({ mod, }, "space", function() awful.layout.inc(1) end, {
         description = "select next", group = "layout"
@@ -192,7 +197,7 @@ client.connect_signal("request::default_keybindings", function()
             c.fullscreen = not c.fullscreen
             c:raise()
         end, { description = "toggle fullscreen", group = "client" }),
-        awful.key({ mod, "Control" }, "space", awful.client.floating.toggle, {
+        awful.key({ mod, ctrl }, "space", awful.client.floating.toggle, {
             description = "toggle floating", group = "client"
         }),
         awful.key({ mod }, "o", function(c) c:move_to_screen() end, {
