@@ -40,8 +40,8 @@ awful.screen.connect_for_each_screen(function(screen)
         margins = dpi(7),
         widget = wibox.container.margin,
     }
-    screen.taglist = require('ui.bar.taglist')(screen)
-    screen.tasklist = require('ui.bar.tasklist')(screen)
+    screen.taglist = require('widget.taglist')(screen)
+    screen.tasklist = require('widget.tasklist')(screen)
     screen.systray = require('widget.systray')
     require("ui.powermenu")(screen)
 

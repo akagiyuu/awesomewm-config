@@ -1,7 +1,7 @@
 local dpi = require("beautiful").xresources.apply_dpi
 local gears = require("gears")
 local wibox = require("wibox")
-local clickable_container = require('widget.clickable-container')
+local clickable_container = require('widget.clickable_container')
 local beautiful = require("beautiful")
 
 local create_button = function(name, icon, bg_color, callback)
