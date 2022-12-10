@@ -3,7 +3,7 @@ local beautiful = require('beautiful')
 local naughty = require('naughty')
 local gears = require('gears')
 local dpi = beautiful.xresources.apply_dpi
-local clickable_container = require('widget.clickable_container')
+local clickable_container = require('container.clickable')
 
 local ui_noti_builder = {}
 

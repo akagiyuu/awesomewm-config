@@ -2,7 +2,7 @@ local awful = require('awful')
 local wibox = require('wibox')
 local beautiful = require('beautiful')
 local dpi = beautiful.xresources.apply_dpi
-local clickable_container = require('widget.clickable_container')
+local clickable_container = require('container.clickable')
 local panel_width = dpi(350)
 
 local notif_header = wibox.widget {

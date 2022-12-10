@@ -8,13 +8,13 @@ local memory = wibox.widget.textbox()
 memory.font = beautiful.font
 
 local round = function(exact, quantum)
-    local quant,frac = math.modf(exact/quantum)
+    local quant, frac = math.modf(exact / quantum)
     return quantum * (quant + (frac > 0.5 and 1 or 0))
 end
 
 watch('bash -c "free | grep -z Mem.*Swap.*"', 2, function(_, stdout)
     local total, used, free, shared, buff_cache, available, total_swap, used_swap, free_swap =
-        stdout:match('(%d+)%s*(%d+)%s*(%d+)%s*(%d+)%s*(%d+)%s*(%d+)%s*Swap:%s*(%d+)%s*(%d+)%s*(%d+)')
+    stdout:match('(%d+)%s*(%d+)%s*(%d+)%s*(%d+)%s*(%d+)%s*(%d+)%s*Swap:%s*(%d+)%s*(%d+)%s*(%d+)')
 
     memory.text = round((used / 1048576), 0.01) .. ' GB'
     collectgarbage('collect')
@@ -26,12 +26,12 @@ local memory_icon = wibox.widget {
     widget = wibox.widget.textbox,
 }
 return wibox.widget {
-    wibox.widget{
+    wibox.widget {
         memory_icon,
         fg = colors.brightgreen,
         widget = wibox.container.background
     },
-    wibox.widget{
+    wibox.widget {
         memory,
         fg = colors.brightgreen,
         widget = wibox.container.background

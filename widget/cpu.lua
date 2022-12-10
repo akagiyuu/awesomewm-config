@@ -30,9 +30,9 @@ watch([[bash -c "cat /proc/stat | grep '^cpu '"]], 2, function(_, stdout)
     collectgarbage('collect')
 end)
 
---return cpu
 local cpu_icon = wibox.widget {
-    markup = '<span font="' .. beautiful.icon_font .. '"> </span>',
+    markup = ' ',
+    font = beautiful.icon_font,
     widget = wibox.widget.textbox,
 }
 local cpu_widget = wibox.widget {

@@ -2,7 +2,7 @@ local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 local gears = require("gears")
 local wibox = require("wibox")
-local clickable_container = require('widget.clickable_container')
+local clickable_container = require('container.clickable')
 
 -- Icon directory path
 local icondir = Paths.icon .. "others/"

@@ -4,12 +4,12 @@ local gears = require("gears")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 
-local button = require("widget.button")
+local button = require('container.button')
 
 local icondir = Paths.icon .. "powermenu/"
 
 local update_user_name = function(profile)
-    awful.spawn.easy_async_with_shell("./.config/awesome/scripts/uname.sh full",
+    awful.spawn.easy_async_with_shell(Paths.config_directory .. "/scripts/uname.sh full",
         function(stdout) profile.name:set_text(stdout) end)
 end
 

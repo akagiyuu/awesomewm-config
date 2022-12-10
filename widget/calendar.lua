@@ -224,7 +224,6 @@ local function worker(user_args)
         popup.visible = true
 
         hide_calendar:start()
-
     end
 
     return calendar_widget

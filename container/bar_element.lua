@@ -4,7 +4,7 @@ local xresources = require("beautiful.xresources")
 local gears = require("gears")
 local dpi = xresources.apply_dpi
 
-local barcontainer = function(widget, id)
+local bar_element_container = function(widget, id)
     id = id or 'widget'
     local container = wibox.widget
     {
@@ -39,5 +39,5 @@ local barcontainer = function(widget, id)
     }
 end
 
-return barcontainer
+return bar_element_container
 
