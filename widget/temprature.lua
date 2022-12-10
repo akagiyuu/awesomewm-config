@@ -29,7 +29,8 @@ watch('bash -c "sensors | awk \'/Core 0/ {print substr($3, 2) }\'"', 30, functio
 end)
 
 local temprature_icon = wibox.widget {
-    markup = '<span font="' .. beautiful.icon_font .. '">  </span>',
+    text = '',
+    font = beautiful.icon_font,
     widget = wibox.widget.textbox,
 }
 local temprature_widget = wibox.widget {

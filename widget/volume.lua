@@ -8,8 +8,8 @@ local rubato = require('modules.rubato')
 local volume_icon = wibox.widget {
     {
         id = "icon",
-        font = beautiful.icon_font,
         text = '󰕾',
+        font = beautiful.icon_font,
         widget = wibox.widget.textbox
     },
     fg = colors.brightcyan,

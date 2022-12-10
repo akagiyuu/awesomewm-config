@@ -1,5 +1,3 @@
-local beautiful = require("beautiful")
-local dpi = beautiful.xresources.apply_dpi
 local gears = require("gears")
 local wibox = require("wibox")
 local clickable_container = require('container.clickable')
@@ -32,8 +30,6 @@ local power_widget = wibox.widget {
 
 power_widget = clickable_container(power_widget)
 
-power_widget:connect_signal("button::release", function()
-    awesome.emit_signal("module::powermenu:show")
-end)
+power_widget:connect_signal("button::release", function() awesome.emit_signal("module::powermenu:show") end)
 
 return power_widget

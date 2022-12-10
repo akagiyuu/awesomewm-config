@@ -1,8 +1,8 @@
 local awful = require("awful")
 
-Terminal  = "kitty"
-Editor    = os.getenv("EDITOR") or "nvim"
-EditorCmd = Terminal .. " -e " .. Editor
+Terminal = "kitty"
+-- Editor    = os.getenv("EDITOR")
+-- EditorCmd = Terminal .. " -e " .. Editor
 
 Paths = {
     home = os.getenv("HOME"),

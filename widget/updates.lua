@@ -19,20 +19,21 @@ end)
 
 --return updates
 local updates_icon = wibox.widget {
-	markup = '<span font="' .. beautiful.icon_font .. '"> </span>',
+    text   = ' ',
+    font   = beautiful.icon_font,
     align  = "center",
     valign = "center",
-	widget = wibox.widget.textbox,
+    widget = wibox.widget.textbox,
 }
 return wibox.widget {
-	wibox.widget{
-		updates_icon,
-		align  = "center",
-		valign = "center",
-		fg = colors.yellow,
-		widget = wibox.container.background
-	},
-    wibox.widget{
+    wibox.widget {
+        updates_icon,
+        align  = "center",
+        valign = "center",
+        fg     = colors.yellow,
+        widget = wibox.container.background
+    },
+    wibox.widget {
         updates,
         fg = colors.yellow,
         widget = wibox.container.background

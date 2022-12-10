@@ -5,7 +5,6 @@ local dpi = require('beautiful').xresources.apply_dpi
 
 
 local memory = wibox.widget.textbox()
-memory.font = beautiful.font
 
 local round = function(exact, quantum)
     local quant, frac = math.modf(exact / quantum)
@@ -22,7 +21,8 @@ end)
 
 --return memory
 local memory_icon = wibox.widget {
-    markup = '<span font="' .. beautiful.icon_font .. '">󰍛 </span>',
+    text = '󰍛 ',
+    font = beautiful.icon_font,
     widget = wibox.widget.textbox,
 }
 return wibox.widget {

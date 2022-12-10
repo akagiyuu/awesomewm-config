@@ -1,8 +1,3 @@
--- ## Cpu ##
--- ~~~~~~~~~
-
--- requirements
--- ~~~~~~~~~~~~
 local wibox = require('wibox')
 local beautiful = require('beautiful')
 local dpi = require('beautiful').xresources.apply_dpi
@@ -31,7 +26,7 @@ watch([[bash -c "cat /proc/stat | grep '^cpu '"]], 2, function(_, stdout)
 end)
 
 local cpu_icon = wibox.widget {
-    markup = ' ',
+    text = ' ',
     font = beautiful.icon_font,
     widget = wibox.widget.textbox,
 }
