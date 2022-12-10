@@ -169,13 +169,10 @@ awful.keyboard.append_global_keybindings {
 }
 
 awful.keyboard.append_global_keybindings {
-    awful.key({}, "Print", function() awful.util.spawn(Paths.home .. "/.local/bin/screenshot") end, {
+    awful.key({}, "Print", function() awful.util.spawn("fish -c 'maim | xclip -selection clipboard -t image/png'") end, {
         description = "Fullscreen", group = "Screenshot"
     }),
-    awful.key({ mod }, "Print", function() awful.util.spawn(Paths.home .. "/.local/bin/screenshot -o '-s'") end, {
-        description = "Area", group = "Screenshot"
-    }),
-    awful.key({ mod, ctrl }, "Print", function() awful.util.spawn(Paths.home .. "/.local/bin/rofi-screenshot") end, {
+    awful.key({ mod }, "Print", function() awful.util.spawn(Paths.home .. "/.local/bin/rofi_screenshot") end, {
         description = "Menu", group = "Screenshot"
     }),
     awful.key({ mod }, "v", function()
