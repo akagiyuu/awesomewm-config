@@ -26,7 +26,7 @@ awful.screen.connect_for_each_screen(function(screen)
         screen = screen
     }
     screen.promptbox = awful.widget.prompt()
-    screen.notification_center = require("ui.notification_center")(screen)
+    screen.notification_center = require("ui.notification.center")(screen)
     screen.layoutbox = wibox.widget {
         {
             screen = screen,

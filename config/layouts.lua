@@ -1,4 +1,3 @@
-local gears = require("gears")
 local awful = require("awful")
 
 tag.connect_signal("request::default_layouts", function()
