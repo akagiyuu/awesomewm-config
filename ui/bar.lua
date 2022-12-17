@@ -15,16 +15,8 @@ local updates_widget        = bar_element_container(require 'widget.updates')
 local network               = bar_element_container(require 'widget.net_speed' {})
 -- local volume                = bar_element_container(require 'widget.volume')
 local powerbutton           = require('widget.power')
-local quake                 = require('modules.quake')
-
 
 awful.screen.connect_for_each_screen(function(screen)
-    screen.quake = quake {
-        app = "kitty",
-        argname = '--class %s',
-        height = 0.4,
-        screen = screen
-    }
     screen.promptbox = awful.widget.prompt()
     screen.notification_center = require("ui.notification.center")(screen)
     screen.layoutbox = wibox.widget {

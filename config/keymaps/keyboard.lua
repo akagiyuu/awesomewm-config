@@ -51,7 +51,7 @@ awful.keyboard.append_global_keybindings {
     awful.key({ mod }, ".", function() awful.spawn("rofimoji") end, {
         description = "Emoji picker", group = "launcher"
     }),
-    awful.key({ mod }, "`", function() awful.screen.focused().quake:toggle() end, {
+    awful.key({ mod }, "`", function() require('ui.scratchpad').terminal:toggle() end, {
         description = 'Quake terminal', group = 'launcher'
     }),
     awful.key({ mod, ctrl }, "t", function()
