@@ -2,6 +2,7 @@ local awful         = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local beautiful     = require('beautiful')
 local modalbind     = require("modules.modalbind")
+local screenshot    = require('utils.screenshot')
 -- local rubato        = require("modules.rubato")
 local shift         = "Shift"
 local ctrl          = "Control"
@@ -169,11 +170,21 @@ awful.keyboard.append_global_keybindings {
 }
 
 awful.keyboard.append_global_keybindings {
-    awful.key({}, "Print", function() awful.util.spawn("fish -c 'maim | xclip -selection clipboard -t image/png'") end, {
-        description = "Fullscreen", group = "Screenshot"
+    awful.key({}, "Print", function() screenshot { auto_save_delay = 0 } end, {
+        description = 'Screenshot',
+        group = "screenshot",
     }),
-    awful.key({ mod }, "Print", function() awful.util.spawn(Paths.home .. "/.local/bin/rofi_screenshot") end, {
-        description = "Menu", group = "Screenshot"
+    awful.key({ shift }, "Print", function() screenshot { auto_save_delay = 0, interactive = true } end, {
+        description = "Screenshot interactive",
+        group = "screenshot",
+    }),
+    awful.key({ ctrl }, "Print", function() screenshot { auto_save_delay = 5 } end, {
+        description = "Screenshot with delay",
+        group = "screenshot",
+    }),
+    awful.key({ shift, ctrl }, "Print", function() screenshot { auto_save_delay = 5, interactive = true } end, {
+        description = "Screenshot interactive with delay",
+        group = "screenshot",
     }),
     awful.key({ mod }, "v", function()
         modalbind.grab {
@@ -223,7 +234,22 @@ client.connect_signal("request::default_keybindings", function()
         awful.key({ mod, ctrl }, "n", function()
             local c = awful.client.restore()
             if c then c:activate { raise = true, context = "key.unminimize" } end
-        end, { description = "restore minimized", group = "client" })
-
+        end, { description = "restore minimized", group = "client" }),
+        awful.key({}, "Print", function() screenshot { auto_save_delay = 0 } end, {
+            description = 'Screenshot',
+            group = "screenshot",
+        }),
+        awful.key({ shift }, "Print", function() screenshot { auto_save_delay = 0, interactive = true } end, {
+            description = "Screenshot interactive",
+            group = "screenshot",
+        }),
+        awful.key({ ctrl }, "Print", function() screenshot { auto_save_delay = 5 } end, {
+            description = "Screenshot with delay",
+            group = "screenshot",
+        }),
+        awful.key({ shift, ctrl }, "Print", function() screenshot { auto_save_delay = 5, interactive = true } end, {
+            description = "Screenshot interactive with delay",
+            group = "screenshot",
+        }),
     }
 end)
