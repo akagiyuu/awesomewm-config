@@ -170,7 +170,7 @@ awful.keyboard.append_global_keybindings {
 }
 
 awful.keyboard.append_global_keybindings {
-    awful.key({}, "Print", function() screenshot { auto_save_delay = 0 } end, {
+    awful.key({}, "Print", function() screenshot { auto_save_delay = 0, clipboard = true } end, {
         description = 'Screenshot',
         group = "screenshot",
     }),
