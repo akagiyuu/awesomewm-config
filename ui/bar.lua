@@ -7,12 +7,12 @@ local dpi = xresources.apply_dpi
 
 local bar_element_container = require('container.bar_element')
 local clock_widget          = require('widget.clock')
-local temprature_widget     = bar_element_container(require 'widget.temprature')
+-- local temprature_widget     = bar_element_container(require 'widget.temprature')
 local mem_widget            = bar_element_container(require 'widget.memory')
 local cpu_widget            = bar_element_container(require 'widget.cpu')
 local updates_widget        = bar_element_container(require 'widget.updates')
 -- local fs_widget             = bar_element_container(require 'widget.fs-widget' { mounts = { '/', '/home' } })
-local network               = bar_element_container(require 'widget.net_speed' {})
+-- local network               = bar_element_container(require 'widget.net_speed' {})
 -- local volume                = bar_element_container(require 'widget.volume')
 local powerbutton           = require('widget.power')
 
@@ -97,9 +97,9 @@ awful.screen.connect_for_each_screen(function(screen)
                     cpu_widget,
                     mem_widget,
                     -- volume,
-                    network,
+                    -- network,
                     -- fs_widget,
-                    temprature_widget,
+                    -- temprature_widget,
                     screen.systray,
                     screen.layoutbox,
                     {
