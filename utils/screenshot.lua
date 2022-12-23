@@ -10,58 +10,37 @@ awful.screenshot.frame_shape = function(cr, w, h)
     gears.shape.rounded_rect(cr, w, h, beautiful.corner_radius)
 end
 
-local screenshot = {}
-
-local count_down = function(delay)
+local count_down = function(screenshot, delay)
     local notification = naughty.notification {
         title   = "Screenshot in:",
         message = tostring(delay) .. " seconds"
     }
 
-    screenshot.manager:connect_signal("timer::tick", function(_, remain)
+    screenshot:connect_signal("timer::tick", function(_, remain)
         notification.message = tostring(remain) .. " seconds"
     end)
 
-    screenshot.manager:connect_signal("timer::timeout", function()
+    screenshot:connect_signal("timer::timeout", function()
         if notification then notification:destroy() end
     end)
 end
 
-local file_to_clipboard = function(file_path)
-    awful.spawn('xclip -selection clipboard -t image/png -i ' .. file_path)
-    awful.spawn('rm ' .. file_path)
-end
+local take = function(args)
+    local screenshot = awful.screenshot(args)
+    local delay = args.auto_save_delay
+    local path = screenshot.file_path
 
-function screenshot:__save(clipboard)
-    local file_path = self.manager.file_path
-
-    if clipboard then
-        file_to_clipboard(file_path)
-        naughty.notification { title = "Saved to clipboard" }
-    else
-        naughty.notification { title = "Saved to " .. file_path }
+    if delay == 0 then
+        awful.spawn('xclip -selection clipboard -t image/png -i ' .. path)
+        naughty.notification { title = "Screenshot saved" }
+        return
     end
+
+    count_down(screenshot, delay)
+    screenshot:connect_signal("file::saved", function()
+        awful.spawn('xclip -selection clipboard -t image/png -i ' .. path)
+        naughty.notification { title = "Screenshot saved" }
+    end)
 end
 
-function screenshot:save(args)
-    self.manager = awful.screenshot(args)
-    local file_path = self.manager.file_path
-
-    if args.auto_save_delay > 0 then
-        screenshot.manager:connect_signal("file::saved", self:__save(args.clipboard))
-    else
-        self:__save(args.clipboard)
-    end
-end
-
-function screenshot:take(args)
-    screenshot:save(args)
-
-    if args.auto_save_delay > 0 then
-        count_down(args.auto_save_delay)
-    end
-end
-
-return setmetatable(screenshot, {
-    __call = function(self, ...) self:take(...) end
-})
+return take
