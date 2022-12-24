@@ -4,7 +4,7 @@ local gears = require('gears')
 local dpi = require('beautiful').xresources.apply_dpi
 local clickable_container = require('container.clickable')
 local beautiful = require('beautiful')
-local rubato = require('modules.rubato')
+local rubato = require('module.rubato')
 
 local arrow = wibox.widget {
     {

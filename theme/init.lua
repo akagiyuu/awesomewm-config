@@ -1,6 +1,6 @@
-local beautiful   = require("beautiful")
-local colorscheme = require("themes.colorschemes")
-local titlebar    = require("themes.titlebar")
+local beautiful   = require('beautiful')
+local colorscheme = require('theme.colorschemes')
+local titlebar    = require('theme.titlebar')
 
 local M = {}
 
@@ -11,7 +11,7 @@ M.init = function(options)
 
     colorscheme.init(options.accent)
 
-    local theme = require("themes.default")
+    local theme = require('theme.default')
 
     colorscheme.set_focus_colors(theme, colors[options.focus_color])
     titlebar.init(theme, options.titlebar_theme)

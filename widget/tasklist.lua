@@ -1,7 +1,7 @@
 local gears = require("gears")
 local awful = require("awful")
 local wibox = require("wibox")
--- local rubato = require('modules.rubato')
+-- local rubato = require('module.rubato')
 -- local color = require('modules.color')
 --
 -- local normal = color.color({ hex = beautiful.border_normal })

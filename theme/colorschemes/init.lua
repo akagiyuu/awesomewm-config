@@ -2,7 +2,7 @@ local M = {}
 
 M.init = function(theme)
     theme = theme or "ayu"
-    local color_palette = require(string.format("themes.colorschemes.%s", theme))
+    local color_palette = require(string.format("theme.colorschemes.%s", theme))
 
     _G.colors             = {
         black         = color_palette[1],

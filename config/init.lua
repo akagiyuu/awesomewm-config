@@ -1,5 +1,5 @@
-require(... .. ".notifications")
-require(... .. ".keymaps")
-require(... .. ".layouts")
-require(... .. ".rules")
+require(... .. '.notification')
+require(... .. '.keymap')
+require(... .. '.layout')
+require(... .. '.rule')
 

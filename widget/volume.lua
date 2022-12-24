@@ -3,7 +3,7 @@ local awful = require("awful")
 local gears = require("gears")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
-local rubato = require('modules.rubato')
+local rubato = require('module.rubato')
 
 local volume_icon = wibox.widget {
     {

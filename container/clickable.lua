@@ -1,6 +1,6 @@
 local wibox = require('wibox')
 local beautiful = require("beautiful")
-local rubato = require("modules.rubato")
+local rubato = require("module.rubato")
 
 -- create widget instance
 local create_widget = function(widget)

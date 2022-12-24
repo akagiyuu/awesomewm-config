@@ -2,7 +2,7 @@ local wibox = require('wibox')
 local watch = require('awful.widget.watch')
 local beautiful = require('beautiful')
 local dpi = require('beautiful').xresources.apply_dpi
-local rubato = require('modules.rubato')
+local rubato = require('module.rubato')
 
 local animation
 local temprature = wibox.widget {

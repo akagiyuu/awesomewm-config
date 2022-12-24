@@ -1,5 +1,5 @@
-local bling = require("modules.bling")
-local modalbind = require("modules.modalbind")
+local bling = require(... .. ".bling")
+local modalbind = require(... .. ".modalbind")
 local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")

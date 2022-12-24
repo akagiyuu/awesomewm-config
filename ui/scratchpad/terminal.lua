@@ -1,4 +1,4 @@
-local bling = require('modules.bling')
+local bling = require('module.bling')
 local beautiful = require("beautiful")
 local awful = require('awful')
 local dpi = beautiful.xresources.apply_dpi

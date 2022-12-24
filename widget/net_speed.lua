@@ -11,7 +11,7 @@
 local watch = require("awful.widget.watch")
 local wibox = require("wibox")
 local dpi = require("beautiful").xresources.apply_dpi
-local rubato = require("modules.rubato")
+local rubato = require("module.rubato")
 
 local net_speed_widget = {}
 
