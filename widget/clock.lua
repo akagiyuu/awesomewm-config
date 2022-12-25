@@ -3,10 +3,11 @@ local beautiful = require('beautiful')
 local dpi = require('beautiful').xresources.apply_dpi
 
 local clock = wibox.widget.textclock('<span font="' .. beautiful.font .. '">%H:%M | %a %d %b</span>')
-local clock_icon = wibox.widget {
-    markup = '<span font="' .. beautiful.icon_font .. '"> </span>',
-    widget = wibox.widget.textbox,
+local clock_icon = require('widget.base.textbox') {
+    text = ' ',
+    type = 'icon',
 }
+
 
 local clock_widget = wibox.widget {
     wibox.widget {

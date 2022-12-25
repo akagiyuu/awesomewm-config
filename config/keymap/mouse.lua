@@ -1,4 +1,5 @@
 local awful = require('awful')
+local helper = require('helper')
 
 root.buttons {
     awful.button({}, 3, function() awful.spawn('jgmenu') end),
@@ -8,18 +9,23 @@ root.buttons {
 
 client.connect_signal('request::default_mousebindings', function()
     awful.mouse.append_client_mousebindings({
-        awful.button({}, 1, function(c)
-            c:activate { context = 'mouse_click' }
-        end),
-        awful.button({ mod }, 1, function(c)
-            c:activate { context = 'mouse_click', action = 'mouse_move' }
-        end),
-        awful.button({ mod, 'Shift' }, 1, function(c)
-            c:activate { context = 'mouse_click', action = 'mouse_resize' }
-        end),
-        awful.button({ 'Control', 'Shift' }, 1, function(_) awful.spawn('xdotool click 3') end, {
-            description = 'Right click', group = 'launcher'
-        }),
+        awful.button(
+            {}, 1,
+            function(c) c:activate { context = 'mouse_click' } end
+        ),
+        awful.button(
+            { mod }, 1,
+            function(c) c:activate { context = 'mouse_click', action = 'mouse_move' } end
+        ),
+        awful.button(
+            { mod, shift }, 1,
+            function(c) c:activate { context = 'mouse_click', action = 'mouse_resize' } end
+        ),
+        awful.button(
+            { ctrl, shift }, 1,
+            function(client) helper.misc.send_click(client, "3") end,
+            { description = 'Right click', group = 'launcher' }
+        ),
     })
 end)
 

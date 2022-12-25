@@ -1,8 +1,7 @@
-local wibox = require("wibox")
-local beautiful = require("beautiful")
+local wibox      = require("wibox")
 local xresources = require("beautiful.xresources")
-local gears = require("gears")
-local dpi = xresources.apply_dpi
+local dpi        = xresources.apply_dpi
+local helper     = require('helper')
 
 local bar_element_container = function(widget, id)
     id = id or 'widget'
@@ -25,7 +24,7 @@ local bar_element_container = function(widget, id)
             widget = wibox.container.margin
         },
         bg = colors.container,
-        shape = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, beautiful.corner_radius) end,
+        shape = helper.misc.rounded_rectangle,
         widget = wibox.container.background
     }
     return wibox.widget {
@@ -40,4 +39,3 @@ local bar_element_container = function(widget, id)
 end
 
 return bar_element_container
-

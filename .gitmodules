@@ -4,10 +4,10 @@
 [submodule "module/rubato"]
 	path = module/rubato
 	url = https://github.com/andOrlando/rubato
-[submodule "module/color"]
-	path = module/color
-	url = https://github.com/andOrlando/color
 [submodule "module/modalbind"]
 	path = module/modalbind
 	url = https://github.com/crater2150/awesome-modalbind
 	branch = new-keygrabber
+[submodule "module/collision"]
+	path = module/collision
+	url = https://github.com/akagiyuu/collision
