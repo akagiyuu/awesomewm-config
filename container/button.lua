@@ -1,8 +1,8 @@
 local dpi = require("beautiful").xresources.apply_dpi
-local gears = require("gears")
 local wibox = require("wibox")
 local clickable_container = require('container.clickable')
 local beautiful = require("beautiful")
+local helper = require('helper')
 
 local create_button = function(name, icon, bg_color, callback)
     local item = wibox.widget {
@@ -35,9 +35,7 @@ local create_button = function(name, icon, bg_color, callback)
             },
             fg = "#212121",
             bg = bg_color,
-            shape = function(cr, width, height)
-                gears.shape.rounded_rect(cr, width, height, 10)
-            end,
+            shape = helper.ui.rounded_rectangle(10),
             widget = wibox.container.background,
             id = 'background'
         },

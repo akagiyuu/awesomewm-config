@@ -1,10 +1,11 @@
-local awful = require("awful")
-local dpi = require("beautiful").xresources.apply_dpi
-local gears = require("gears")
-local wibox = require("wibox")
+local awful     = require("awful")
+local dpi       = require("beautiful").xresources.apply_dpi
+local wibox     = require("wibox")
 local beautiful = require("beautiful")
-
-local button = require('container.button')
+local helper    = require('helper')
+local button    = require('container.button')
+local system    = require('helper.system')
+local capi      = { awesome = awesome, mouse = mouse }
 
 local icondir = Paths.icon .. "powermenu/"
 
@@ -18,50 +19,23 @@ local profile = {
         image = Paths.config_directory .. "assets/profile.jpg",
         resize = true,
         forced_height = dpi(200),
-        clip_shape = function(cr, width, height)
-            gears.shape.rounded_rect(cr, width, height, 30)
-        end,
+        clip_shape = helper.ui.rounded_rectangle(30),
         widget = wibox.widget.imagebox
     },
-    name = wibox.widget {
-        align = 'center',
-        valign = 'center',
+    name = require('widget.base.text') {
         text = " ",
-        font = beautiful.font_name .. " Italic 30",
-        widget = wibox.widget.textbox
+        font = beautiful.font_name,
+        size = 30,
+        halign = 'center',
+        valign = 'center',
     }
 }
 
-local suspend_command = function()
-    awful.spawn("systemctl suspend")
-    awesome.emit_signal("module::powermenu:hide")
-end
-
-local logout_command = function()
-    awesome.quit()
-end
-
-local lock_command = function()
-    awful.spawn(Paths.home .. "/.local/bin/lock")
-    awesome.emit_signal("module::powermenu:hide")
-end
-
-local shutdown_command = function()
-    awful.spawn("shutdown")
-    awesome.emit_signal("module::powermenu:hide")
-end
-
-local reboot_command = function()
-    awful.spawn("reboot")
-    awesome.emit_signal("module::powermenu:hide")
-end
-
-
-local shutdown_button = button("Shutdown", icondir .. "shutdown.svg", colors.blue, shutdown_command)
-local reboot_button = button("Reboot", icondir .. "reboot.svg", colors.red, reboot_command)
-local suspend_button = button("Suspend", icondir .. "suspend.svg", colors.yellow, suspend_command)
-local lock_button = button("Lock", icondir .. "lock.svg", colors.cyan, lock_command)
-local logout_button = button("Logout", icondir .. "logout.svg", colors.green, logout_command)
+local shutdown_button = button("Shutdown", icondir .. "shutdown.svg", colors.blue, system.shutdown)
+local reboot_button = button("Reboot", icondir .. "reboot.svg", colors.red, system.reboot)
+local suspend_button = button("Suspend", icondir .. "suspend.svg", colors.yellow, system.suspend)
+local lock_button = button("Lock", icondir .. "lock.svg", colors.cyan, system.lock)
+local logout_button = button("Logout", icondir .. "logout.svg", colors.green, system.logout)
 
 local create_powermenu_screen = function(screen)
     update_user_name(profile)
@@ -129,18 +103,18 @@ local create_powermenu_screen = function(screen)
         autostart = false,
         stop_event = 'release',
         keypressed_callback = function(_, _, key, _)
-            if key == 'Escape' then awesome.emit_signal("module::powermenu:hide") end
+            if key == 'Escape' then capi.awesome.emit_signal("module::powermenu:hide") end
         end
     }
 
-    awesome.connect_signal("module::powermenu:show", function()
-        if screen ~= mouse.screen then return end
+    capi.awesome.connect_signal("module::powermenu:show", function()
+        if screen ~= capi.mouse.screen then return end
 
         powermenu_container.visible = true
         powermenu_keygrabber:start()
     end)
 
-    awesome.connect_signal("module::powermenu:hide", function()
+    capi.awesome.connect_signal("module::powermenu:hide", function()
         powermenu_container.visible = false
         powermenu_keygrabber:stop()
     end)

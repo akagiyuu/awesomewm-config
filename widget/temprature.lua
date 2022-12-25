@@ -4,17 +4,23 @@ local beautiful = require('beautiful')
 local dpi = require('beautiful').xresources.apply_dpi
 local rubato = require('module.rubato')
 
-local animation
 local temprature = wibox.widget {
-    {
+    require('widget.base.text') {
         id = 'text',
-        font = beautiful.font,
-        widget = wibox.widget.textbox,
+        font = beautiful.font_name,
+        color = colors.brightred,
+        create_callback = function(self)
+            watch('bash -c "sensors | awk \'/Core 0/ {print substr($3, 2) }\'"', 30, function(_, stdout)
+                self.text = stdout
+            end)
+        end
     },
     width = 100,
     widget = wibox.container.constraint,
 }
-animation = rubato.timed {
+
+
+local animation = rubato.timed {
     intro = 0.05,
     duration = 0.3,
     easing = {
@@ -24,25 +30,12 @@ animation = rubato.timed {
     subscribed = function(value) temprature.width = value end
 }
 
-watch('bash -c "sensors | awk \'/Core 0/ {print substr($3, 2) }\'"', 30, function(_, stdout)
-    temprature:get_children_by_id('text')[1].text = stdout
-end)
-
-local temprature_icon = wibox.widget {
-    text = '',
-    font = beautiful.icon_font,
-    widget = wibox.widget.textbox,
-}
 local temprature_widget = wibox.widget {
-    {
-        temprature_icon,
-        fg = colors.brightred,
-        widget = wibox.container.background
-    },
-    {
-        temprature,
-        fg = colors.brightred,
-        widget = wibox.container.background
+    require('widget.base.text') {
+        text = '',
+        font = beautiful.icon_font,
+        italic = false,
+        color = colors.brightred,
     },
     layout = wibox.layout.fixed.horizontal
 }

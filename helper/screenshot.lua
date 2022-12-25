@@ -1,14 +1,11 @@
-local awful     = require('awful')
-local naughty   = require('naughty')
-local gears     = require('gears')
-local beautiful = require('beautiful')
+local awful   = require('awful')
+local naughty = require('naughty')
+local ui      = require('helper.ui')
 
 awful.screenshot.directory = Paths.home .. "/Pictures/Screenshots/"
 awful.screenshot.prefix = ''
 
-awful.screenshot.frame_shape = function(cr, w, h)
-    gears.shape.rounded_rect(cr, w, h, beautiful.corner_radius)
-end
+awful.screenshot.frame_shape = ui.rounded_rectangle()
 
 local count_down = function(screenshot, delay)
     local notification = naughty.notification {

@@ -1,27 +1,16 @@
 local awful = require('awful')
 local wibox = require('wibox')
-local gears = require('gears')
 local dpi = require('beautiful').xresources.apply_dpi
 local clickable_container = require('container.clickable')
 local beautiful = require('beautiful')
 local rubato = require('module.rubato')
 
-local arrow = wibox.widget {
-    {
-        {
-            {
-                id = 'icon',
-                text = '',
-                font = beautiful.icon_font .. ' 14',
-                widget = wibox.widget.textbox,
-            },
-            layout = wibox.layout.align.horizontal,
-        },
-        margins = dpi(7),
-        widget = wibox.container.margin
-    },
-    widget = clickable_container
+local arrow = require('widget.base.text') {
+    id = 'icon',
+    text = '',
+    font = beautiful.icon_font,
 }
+
 local icons = wibox.widget {
     widget = wibox.container.constraint,
     strategy = "max",
@@ -36,7 +25,18 @@ local icons = wibox.widget {
 }
 local systray = wibox.widget {
     icons,
-    arrow,
+    {
+        {
+            {
+                arrow,
+                layout = wibox.layout.align.horizontal,
+            },
+            margins = dpi(7),
+            widget = wibox.container.margin
+        },
+        widget = clickable_container
+    },
+
     layout = wibox.layout.align.horizontal
 }
 
@@ -48,10 +48,10 @@ local animation = rubato.timed {
 
 systray.toggle = function()
     if icons.width == 0 then
-        arrow:get_children_by_id('icon')[1].text = ''
+        arrow.text = ''
         animation.target = 200
     else
-        arrow:get_children_by_id('icon')[1].text = ''
+        arrow.text = ''
         animation.target = 0
     end
 end

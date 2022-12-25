@@ -4,6 +4,7 @@ local naughty = require('naughty')
 local gears = require('gears')
 local dpi = beautiful.xresources.apply_dpi
 local clickable_container = require('container.clickable')
+local helper = require('helper')
 
 local ui_noti_builder = {}
 
@@ -78,7 +79,7 @@ ui_noti_builder.notifbox_actions = function(n)
                     widget = clickable_container
                 },
                 bg            = beautiful.groups_bg,
-                shape         = gears.shape.rounded_rect,
+                shape         = helper.ui.rounded_rectangle(),
                 forced_height = 30,
                 widget        = wibox.container.background
             },

@@ -24,7 +24,7 @@ local bar_element_container = function(widget, id)
             widget = wibox.container.margin
         },
         bg = colors.container,
-        shape = helper.misc.rounded_rectangle,
+        shape = helper.ui.rounded_rectangle(),
         widget = wibox.container.background
     }
     return wibox.widget {

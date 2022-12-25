@@ -1,9 +1,9 @@
-local gears = require("gears")
-local awful = require("awful")
-local wibox = require("wibox")
-local beautiful = require("beautiful")
+local awful      = require("awful")
+local wibox      = require("wibox")
+local beautiful  = require("beautiful")
 local xresources = require("beautiful.xresources")
-local dpi = xresources.apply_dpi
+local dpi        = xresources.apply_dpi
+local helper     = require('helper')
 
 local bar_element_container = require('container.bar_element')
 local clock_widget          = require('widget.clock')
@@ -69,7 +69,7 @@ awful.screen.connect_for_each_screen(function(screen)
                     layout = wibox.layout.fixed.horizontal,
                 },
                 bg = colors.black,
-                shape = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, beautiful.corner_radius) end,
+                shape = helper.ui.rounded_rectangle(),
                 widget = wibox.container.background,
             },
             {
@@ -84,7 +84,7 @@ awful.screen.connect_for_each_screen(function(screen)
                     layout = wibox.layout.align.horizontal,
                 },
                 bg = colors.black,
-                shape = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, beautiful.corner_radius) end,
+                shape = helper.ui.rounded_rectangle(),
                 widget = wibox.container.background,
             },
             {
@@ -110,7 +110,7 @@ awful.screen.connect_for_each_screen(function(screen)
                     layout = wibox.layout.fixed.horizontal,
                 },
                 bg = colors.black,
-                shape = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, beautiful.corner_radius) end,
+                shape = helper.ui.rounded_rectangle(),
                 widget = wibox.container.background,
             }
         },
@@ -118,5 +118,4 @@ awful.screen.connect_for_each_screen(function(screen)
         -- right = beautiful.useless_gap,
         widget = wibox.container.margin,
     }
-
 end)

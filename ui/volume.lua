@@ -4,6 +4,7 @@ local gears = require('gears')
 local beautiful = require('beautiful')
 local dpi = beautiful.xresources.apply_dpi
 local rubato = require('module.rubato')
+local capi = { awesome = awesome }
 
 local offsetx = dpi(56)
 local offsety = dpi(250)
@@ -87,7 +88,7 @@ volume_adjust:connect_signal('mouse::leave', function()
     hide_volume_adjust:again()
 end)
 
-awesome.connect_signal('signal::volume',
+capi.awesome.connect_signal('signal::volume',
     function()
         awful.spawn.easy_async_with_shell(
             'pamixer --get-volume',

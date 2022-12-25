@@ -11,3 +11,6 @@
 [submodule "module/collision"]
 	path = module/collision
 	url = https://github.com/akagiyuu/collision
+[submodule "module/color"]
+	path = module/color
+	url = https://github.com/andOrlando/color

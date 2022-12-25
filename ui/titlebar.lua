@@ -1,8 +1,8 @@
-local gears = require("gears")
 local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
+local capi = { client = client }
 
 local vertival_titlebar = function(c)
     local buttons = {
@@ -56,4 +56,4 @@ local vertival_titlebar = function(c)
     }
 end
 
-client.connect_signal("request::titlebars", function(c) vertival_titlebar(c) end)
+capi.client.connect_signal("request::titlebars", function(c) vertival_titlebar(c) end)

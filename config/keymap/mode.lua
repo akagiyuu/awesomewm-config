@@ -1,20 +1,26 @@
-local awful = require('awful')
+local volume_helper = require('helper.volume')
 
 return {
     volume = {
         {
             'd',
-            function() awesome.emit_signal('signal::volume') awful.util.spawn('pamixer -d 6', false) end,
+            function()
+                volume_helper.change(-6)
+            end,
             'decrease volume',
         },
         {
             'u',
-            function() awesome.emit_signal('signal::volume') awful.util.spawn('pamixer -i 6', false) end,
+            function()
+                volume_helper.change(6)
+            end,
             'increase volume',
         },
         {
             'XF87AudioMute',
-            function() awful.util.spawn('pamixer -t', false) end,
+            function()
+                volume_helper.mute()
+            end,
             'toggle mute',
         },
     }

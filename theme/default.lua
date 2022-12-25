@@ -41,6 +41,7 @@ local default_theme = {
     -- border_focus      = colors.blue,
     -- border_marked     = colors.blue,
     corner_radius     = dpi(5),
+    border_radius     = dpi(5),
 
     hotkeys_bg           = colors.black .. '33',
     hotkeys_modifiers_fg = colors.blue,

@@ -1,28 +1,30 @@
-local naughty = require("naughty")
-local wibox = require("wibox")
-local beautiful = require("beautiful")
-local gears = require("gears")
-local dpi = require("beautiful.xresources").apply_dpi
-local awful = require("awful")
+local naughty             = require("naughty")
+local wibox               = require("wibox")
+local beautiful           = require("beautiful")
+local gears               = require("gears")
+local dpi                 = require("beautiful.xresources").apply_dpi
+local awful               = require("awful")
 local clickable_container = require("container.clickable")
+local helper              = require('helper')
+
 local app_icons = {
-    ["firefox"] = '󰈹',
-    ["kitty"] = '',
+    ["firefox"]         = '󰈹',
+    ["kitty"]           = '',
     ["screenshot tool"] = "󰄄",
-    ["color picker"] = "󰴱",
+    ["color picker"]    = "󰴱",
 }
 
 local app_name_widget = function(notification)
     return wibox.widget {
-        {
-            markup = notification.app_name and
+        require('widget.base.text') {
+            text = notification.app_name and
                 notification.app_name:gsub("(%l)(%w*)", function(a, b) return string.upper(a) .. b end) or
                 'System Notification',
-            font = beautiful.font_name .. ' Bold 16',
-            align = 'center',
+            font = beautiful.font_name,
+            size = 16,
+            bold = true,
+            halign = 'center',
             valign = 'center',
-            widget = wibox.widget.textbox
-
         },
         top    = dpi(15),
         widget = wibox.container.margin,
@@ -55,23 +57,23 @@ local icon_widget = function(notification)
                 widget = wibox.container.constraint,
             },
             {
-                    {
-                        {
-                            font = beautiful.icon_font .. " 10",
-                            markup = "<span foreground='" ..
-                                beautiful.notification_bg .. "'>" .. icon .. "</span>",
-                            align = "center",
-                            valign = "center",
-                            widget = wibox.widget.textbox,
-                        },
-                        bg = random_color,
-                        widget = wibox.container.background,
-                        shape = gears.shape.circle,
-                        forced_height = dpi(20),
-                        forced_width = dpi(20),
+                {
+                    require('widget.base.text') {
+                        text = icon,
+                        font = beautiful.font,
+                        size = 10,
+                        color = beautiful.notification_bg,
+                        halign = "center",
+                        valign = "center",
                     },
-                    expand = "none",
-                    layout = wibox.layout.align.horizontal,
+                    bg = random_color,
+                    widget = wibox.container.background,
+                    shape = gears.shape.circle,
+                    forced_height = dpi(20),
+                    forced_width = dpi(20),
+                },
+                expand = "none",
+                layout = wibox.layout.align.horizontal,
             },
             layout = wibox.layout.stack,
         },
@@ -114,17 +116,16 @@ return function(notification)
             {
                 {
                     {
-                        {
-                            id     = 'text_role',
-                            font   = beautiful.font_name .. ' Regular 10',
-                            widget = wibox.widget.textbox
+                        require('widget.base.text') {
+                            id   = 'text_role',
+                            font = beautiful.font_name,
                         },
                         widget = wibox.container.place
                     },
                     widget = clickable_container
                 },
                 bg            = beautiful.groups_bg,
-                shape         = gears.shape.rounded_rect,
+                shape         = helper.ui.rounded_rectangle(),
                 forced_height = dpi(30),
                 widget        = wibox.container.background
             },
