@@ -19,4 +19,8 @@ _misc.round = function(exact, quantum)
     return quantum * (quant + (frac > 0.5 and 1 or 0))
 end
 
+_misc.capitalize = function(text)
+    return text:gsub("(%l)(%w*)", function(a, b) return string.upper(a) .. b end)
+end
+
 return _misc

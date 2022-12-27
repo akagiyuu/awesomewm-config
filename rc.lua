@@ -7,4 +7,4 @@ require('config')
 require('ui')
 require('module')
 
-require('helper').wallpaper.apply()
+require('helper.wallpaper').apply()

@@ -3,8 +3,8 @@ local dpi       = require("beautiful").xresources.apply_dpi
 local wibox     = require("wibox")
 local beautiful = require("beautiful")
 local helper    = require('helper')
-local button    = require('container.button')
 local system    = require('helper.system')
+local misc      = require('helper.misc')
 local capi      = { awesome = awesome, mouse = mouse }
 
 local icondir = Paths.icon .. "powermenu/"
@@ -31,20 +31,29 @@ local profile = {
     }
 }
 
-local shutdown_button = button("Shutdown", icondir .. "shutdown.svg", colors.blue, system.shutdown)
-local reboot_button = button("Reboot", icondir .. "reboot.svg", colors.red, system.reboot)
-local suspend_button = button("Suspend", icondir .. "suspend.svg", colors.yellow, system.suspend)
-local lock_button = button("Lock", icondir .. "lock.svg", colors.cyan, system.lock)
-local logout_button = button("Logout", icondir .. "logout.svg", colors.green, system.logout)
+local button = function(name, background)
+    return require('widget.base.button.image') {
+        text_opts = {
+            text = misc.capitalize(name),
+            bold = true,
+            italic = false,
+            size = 30,
+            color = '#212121'
+        },
+        icon_path = string.format('%s%s.svg', icondir, name),
+        background = background,
+        border_radius = 10,
+        on_press = system[name],
+    }
+end
+
 
 local create_powermenu_screen = function(screen)
     update_user_name(profile)
 
     local powermenu = wibox.widget {
-        nil,
         {
             {
-                nil,
                 {
                     {
                         profile.picture,
@@ -52,38 +61,37 @@ local create_powermenu_screen = function(screen)
                         halign = "center",
                         widget = wibox.container.place
                     },
-                    spacing = dpi(50),
                     {
                         profile.name,
                         margins = dpi(0),
                         widget = wibox.container.margin
                     },
+                    spacing = dpi(50),
                     layout = wibox.layout.fixed.vertical
                 },
-                nil,
-                expand = "none",
-                layout = wibox.layout.align.horizontal
+                halign = 'center',
+                valign = 'center',
+                widget = wibox.container.place
             },
             {
-                nil,
                 {
-                    shutdown_button,
-                    reboot_button,
-                    logout_button,
-                    lock_button,
-                    suspend_button,
+                    button('shutdown', colors.blue),
+                    button('reboot', colors.red),
+                    button('suspend', colors.yellow),
+                    button('lock', colors.cyan),
+                    button('logout', colors.green),
                     spacing = dpi(30),
                     layout = wibox.layout.fixed.horizontal
                 },
-                nil,
-                expand = "none",
-                layout = wibox.layout.align.horizontal
+                halign = 'center',
+                valign = 'center',
+                widget = wibox.container.place
             },
             layout = wibox.layout.align.vertical
         },
-        nil,
-        layout = wibox.layout.align.vertical,
-        expand = "none",
+        halign = 'center',
+        valign = 'center',
+        widget = wibox.container.place
     }
     local powermenu_container = wibox {
         widget = powermenu,
