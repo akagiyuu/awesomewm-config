@@ -3,6 +3,9 @@ local hotkeys_popup = require('awful.hotkeys_popup')
 local helper        = require('helper')
 local modalbind     = require('module.modalbind')
 local mode          = require('config.keymap.mode')
+local capi          = {
+    awesome = awesome
+}
 
 awful.keyboard.append_global_keybindings {
     awful.key({ mod }, 's', hotkeys_popup.show_help, {
@@ -11,15 +14,15 @@ awful.keyboard.append_global_keybindings {
     awful.key({ mod }, 'w', function() awful.spawn('jgmenu') end, {
         description = 'show main menu', group = 'awesome'
     }),
-    awful.key({ mod, ctrl }, 'r', awesome.restart, {
+    awful.key({ mod, ctrl }, 'r', capi.awesome.restart, {
         description = 'reload awesome', group = 'awesome'
     }),
-    awful.key({ mod, shift }, 'q', awesome.quit, {
+    awful.key({ mod, shift }, 'q', capi.awesome.quit, {
         description = 'quit awesome', group = 'awesome'
     }),
     awful.key(
         { mod }, 'Escape',
-        function() awesome.emit_signal('module::powermenu:show') end,
+        function() capi.awesome.emit_signal('module::powermenu:show') end,
         { description = 'show exit menu', group = 'awesome' }
     ),
     awful.key(
@@ -111,7 +114,7 @@ awful.keyboard.append_global_keybindings {
 awful.keyboard.append_global_keybindings {
     awful.key(
         { mod }, 'Tab',
-        function() awesome.emit_signal('bling::window_switcher::turn_on') end,
+        function() capi.awesome.emit_signal('bling::window_switcher::turn_on') end,
         { description = 'Window Switcher', group = 'client' }
     ),
     awful.key(
