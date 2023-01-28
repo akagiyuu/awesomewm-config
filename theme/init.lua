@@ -1,6 +1,5 @@
 local beautiful   = require('beautiful')
 local colorscheme = require('theme.colorschemes')
-local titlebar    = require('theme.titlebar')
 
 local M = {}
 
@@ -14,7 +13,6 @@ M.init = function(options)
     local theme = require('theme.default')
 
     colorscheme.set_focus_colors(theme, colors[options.focus_color])
-    titlebar.init(theme, options.titlebar_theme)
 
     for key, value in pairs(options) do
         theme[key] = value

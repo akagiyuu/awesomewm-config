@@ -1,8 +1,6 @@
 local awful         = require('awful')
 local hotkeys_popup = require('awful.hotkeys_popup')
 local helper        = require('helper')
-local modalbind     = require('module.modalbind')
-local mode          = require('config.keymap.mode')
 local capi          = {
     awesome = awesome
 }
@@ -189,11 +187,6 @@ awful.keyboard.append_global_keybindings {
         helper.misc.toggle_wibar,
         { description = 'toggle wibar', group = 'misc' }
     ),
-    awful.key(
-        { mod }, 'v',
-        function() modalbind.grab { keymap = mode.volume, name = 'volume', stay_in_mode = true } end,
-        { description = 'volume mode', group = 'misc' }
-    )
 }
 
 
