@@ -7,7 +7,7 @@ local wibox = require("wibox")
 -- local normal = color.color({ hex = beautiful.border_normal })
 -- local focus = color.color({ hex = beautiful.border_focus} )
 -- local transition = color.transition(normal, focus, 0)
---
+
 return function(screen)
     return awful.widget.tasklist {
         screen = screen,

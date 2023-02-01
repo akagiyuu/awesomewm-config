@@ -1,7 +1,7 @@
 require('awful.autofocus')
 require('user_variables')
 
-require('theme').init { accent = Colorscheme }
+require('theme').init {}
 
 require('config')
 require('ui')

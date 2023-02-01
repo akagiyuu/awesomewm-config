@@ -1,7 +1,7 @@
 local M = {}
 
 M.init = function(theme)
-    theme = theme or "ayu"
+    theme = theme or Colorscheme
     local color_palette = require(string.format("theme.colorschemes.%s", theme))
 
     _G.colors             = {
@@ -35,7 +35,7 @@ end
 ---@param color string color code in hex
 M.set_focus_colors = function(theme, color)
     if color == nil or color:match("^#?%x%x%x%x%x%x$") == nil then
-        color = "#59C2FF"
+        color = colors.blue
     end
 
     theme.taglist_fg_focus          = color
@@ -45,7 +45,6 @@ M.set_focus_colors = function(theme, color)
     theme.notification_border_color = color
     theme.menu_border_color         = color
     theme.titlebar_fg_focus         = color
-    theme.modebox_border      = color
 end
 
 return M

@@ -1,12 +1,8 @@
 local xresources = require('beautiful.xresources')
 local dpi = xresources.apply_dpi
-local gears = require('gears')
 
 local layout_icon_path = Paths.icon .. 'layouts/'
 local lip              = layout_icon_path
-
-local others_icon_path = Paths.icon .. 'others/'
-local oip              = others_icon_path
 
 local default_theme = {
     font_name            = 'Cascadia Code',
@@ -107,9 +103,6 @@ local default_theme = {
     -- collision_focus_shape = gears.shape.rectangle,
     -- collision_focus_fg = colors.blue,
     -- collision_focus_bg = colors.transparent,
-    modalbind_font = 'Cascadia Code Italic 9',
-    modebox_fg = colors.brightwhite,
-    modebox_bg = colors.black
 }
 
 default_theme.window_switcher_widget_bg = '#00000000'

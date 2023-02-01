@@ -8,7 +8,7 @@ local M = {}
 M.init = function(options)
     options = options or {}
 
-    colorscheme.init(options.accent)
+    colorscheme.init(options.colorscheme)
 
     local theme = require('theme.default')
 

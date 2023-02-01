@@ -10,10 +10,9 @@ local clock_widget          = require('widget.clock')
 -- local temprature_widget     = bar_element_container(require 'widget.temprature')
 local mem_widget            = bar_element_container(require 'widget.memory')
 local cpu_widget            = bar_element_container(require 'widget.cpu')
-local updates_widget        = bar_element_container(require 'widget.updates')
+-- local updates_widget        = bar_element_container(require 'widget.updates')
 -- local fs_widget             = bar_element_container(require 'widget.fs-widget' { mounts = { '/', '/home' } })
 -- local network               = bar_element_container(require 'widget.net_speed' {})
--- local volume                = bar_element_container(require 'widget.volume')
 local powerbutton           = require('widget.power')
 
 awful.screen.connect_for_each_screen(function(screen)
@@ -89,14 +88,13 @@ awful.screen.connect_for_each_screen(function(screen)
             },
             {
                 {
-                    {
-                        updates_widget,
-                        left = 15,
-                        widget = wibox.container.margin
-                    },
+                    -- {
+                    --     updates_widget,
+                    --     left = 15,
+                    --     widget = wibox.container.margin
+                    -- },
                     cpu_widget,
                     mem_widget,
-                    -- volume,
                     -- network,
                     -- fs_widget,
                     -- temprature_widget,
