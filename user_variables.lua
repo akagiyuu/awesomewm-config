@@ -1,6 +1,6 @@
 local awful = require("awful")
 
-Colorscheme = 'ayu'
+Colorscheme = 'github'
 Terminal    = "kitty"
 Browser     = 'firefox'
 -- Editor    = os.getenv("EDITOR")
