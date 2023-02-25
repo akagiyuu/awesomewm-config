@@ -1,12 +1,12 @@
-local awful      = require("awful")
-local wibox      = require("wibox")
-local beautiful  = require("beautiful")
-local xresources = require("beautiful.xresources")
-local dpi        = xresources.apply_dpi
-local helper     = require('helper')
+local awful                 = require("awful")
+local wibox                 = require("wibox")
+local beautiful             = require("beautiful")
+local xresources            = require("beautiful.xresources")
+local dpi                   = xresources.apply_dpi
+local helper                = require('helper')
 
 local bar_element_container = require('container.bar_element')
-local clock_widget          = require('widget.clock')
+local clock_widget          = bar_element_container(require('widget.clock'))
 -- local temprature_widget     = bar_element_container(require 'widget.temprature')
 local mem_widget            = bar_element_container(require 'widget.memory')
 local cpu_widget            = bar_element_container(require 'widget.cpu')
@@ -23,7 +23,7 @@ awful.screen.connect_for_each_screen(function(screen)
             visible = true,
             buttons = {
                 awful.button({}, 1, function() awful.layout.inc(1) end),
-                awful.button({ mod }, 1, function() awful.layout.inc(-1) end),
+                awful.button({ mod }, 1, function() awful.layout.inc( -1) end),
             },
             widget = awful.widget.layoutbox,
         },
@@ -45,72 +45,62 @@ awful.screen.connect_for_each_screen(function(screen)
         screen = screen,
         bg = colors.transparent,
     }
-    awful.placement.top(screen.wibar, { margins = beautiful.useless_gap * 2 })
-    screen.wibar:struts { top = dpi(50) }
+    awful.placement.top(screen.wibar)
+    -- screen.wibar:struts { top = dpi(50) }
 
     screen.wibar:setup {
         {
             layout = wibox.layout.align.horizontal,
             expand = "none",
             {
+                screen.taglist,
                 {
-                    screen.taglist,
-                    {
-                        screen.tasklist,
-                        right = 15,
-                        widget = wibox.container.margin
-                    },
-                    spacing = dpi(10),
-                    bg = colors.black,
-                    layout = wibox.layout.fixed.horizontal,
+                    screen.tasklist,
+                    top = dpi(5),
+                    bottom = dpi(5),
+                    widget = wibox.container.margin,
                 },
+                {
+                    forced_width = dpi(8),
+                    layout = wibox.layout.fixed.horizontal
+                },
+
+                spacing = dpi(10),
                 bg = colors.black,
-                shape = helper.ui.rounded_rectangle(),
-                widget = wibox.container.background,
+                layout = wibox.layout.fixed.horizontal,
             },
             {
                 {
-                    {
-                        clock_widget,
-                        left = 20,
-                        right = 20,
-                        widget = wibox.container.margin
-                    },
-                    bg = colors.black,
-                    layout = wibox.layout.align.horizontal,
+                    clock_widget,
+                    left = 20,
+                    right = 20,
+                    widget = wibox.container.margin
                 },
                 bg = colors.black,
-                shape = helper.ui.rounded_rectangle(),
-                widget = wibox.container.background,
+                layout = wibox.layout.align.horizontal,
             },
             {
+                -- {
+                --     updates_widget,
+                --     left = 15,
+                --     widget = wibox.container.margin
+                -- },
+                cpu_widget,
+                mem_widget,
+                -- network,
+                -- fs_widget,
+                -- temprature_widget,
+                screen.systray,
+                screen.layoutbox,
                 {
-                    -- {
-                    --     updates_widget,
-                    --     left = 15,
-                    --     widget = wibox.container.margin
-                    -- },
-                    cpu_widget,
-                    mem_widget,
-                    -- network,
-                    -- fs_widget,
-                    -- temprature_widget,
-                    screen.systray,
-                    screen.layoutbox,
-                    {
-                        screen.notification_center,
-                        right = 15,
-                        widget = wibox.container.margin,
-                    },
-                    layout = wibox.layout.fixed.horizontal,
+                    screen.notification_center,
+                    right = 15,
+                    widget = wibox.container.margin,
                 },
-                bg = colors.black,
-                shape = helper.ui.rounded_rectangle(),
-                widget = wibox.container.background,
+                layout = wibox.layout.fixed.horizontal,
             }
         },
-        -- left = beautiful.useless_gap,
-        -- right = beautiful.useless_gap,
-        widget = wibox.container.margin,
+        bg = colors.black,
+        widget = wibox.container.background,
     }
 end)
