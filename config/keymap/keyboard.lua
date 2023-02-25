@@ -30,7 +30,7 @@ awful.keyboard.append_global_keybindings {
     ),
     awful.key(
         { mod }, 'p',
-        function() awful.spawn(Paths.home .. '/.config/rofi/launchers/misc/launcher.sh') end,
+        function() awful.spawn(Paths.home .. '/.config/rofi/scripts/launcher_t3') end,
         { description = 'Apps', group = 'launcher' }
     ),
     awful.key(

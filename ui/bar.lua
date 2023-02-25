@@ -13,7 +13,6 @@ local cpu_widget            = bar_element_container(require 'widget.cpu')
 -- local updates_widget        = bar_element_container(require 'widget.updates')
 -- local fs_widget             = bar_element_container(require 'widget.fs-widget' { mounts = { '/', '/home' } })
 -- local network               = bar_element_container(require 'widget.net_speed' {})
-local powerbutton           = require('widget.power')
 
 awful.screen.connect_for_each_screen(function(screen)
     screen.promptbox = awful.widget.prompt()
@@ -34,7 +33,6 @@ awful.screen.connect_for_each_screen(function(screen)
     screen.taglist = require('widget.taglist')(screen)
     screen.tasklist = require('widget.tasklist')(screen)
     screen.systray = require('widget.systray')
-    require("ui.powermenu")(screen)
 
     screen.wibar = awful.wibar {
         position = "top",
@@ -56,7 +54,6 @@ awful.screen.connect_for_each_screen(function(screen)
             expand = "none",
             {
                 {
-                    powerbutton,
                     screen.taglist,
                     {
                         screen.tasklist,

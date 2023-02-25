@@ -1,2 +1,1 @@
 require(... .. ".bar")
--- require(... .. '.titlebar')
