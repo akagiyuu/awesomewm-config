@@ -29,12 +29,15 @@ local update_tags     = function(self, c3)
     if c3.selected then
         self:get_children_by_id("indicator_id")[1].bg = colors.brightred
         self.anim.target = 32
-    elseif #c3:clients() == 0 then
+        return
+    end
+    local client_count = #c3:clients()
+    if client_count == 0 then
         self:get_children_by_id("indicator_id")[1].bg = colors.brightblack
         self.anim.target = 8
     else
         self:get_children_by_id("indicator_id")[1].bg = colors.blue
-        self.anim.target = 16
+        self.anim.target = math.min(16 * client_count, 48)
     end
 end
 

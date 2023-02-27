@@ -1,3 +1,4 @@
+local gears     = require("gears")
 local awful     = require("awful")
 local wibox     = require("wibox")
 local beautiful = require("beautiful")
@@ -48,9 +49,9 @@ return function(screen)
                             layout = wibox.layout.fixed.horizontal
                         },
                         {
-                            id = 'text_role',
-                            -- forced_width = dpi(150),
-                            widget = wibox.widget.textbox,
+                            { id = 'text_role', widget = wibox.widget.textbox },
+                            width = dpi(100),
+                            widget = wibox.container.constraint
                         },
                         {
                             forced_width = dpi(2),
