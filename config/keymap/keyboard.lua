@@ -26,7 +26,12 @@ awful.keyboard.append_global_keybindings {
     awful.key(
         { mod }, 'Return',
         function() awful.spawn(Terminal) end,
-        { description = 'open a terminal', group = 'launcher' }
+        { description = 'Terminal', group = 'launcher' }
+    ),
+    awful.key(
+        { mod }, 'e',
+        function() awful.spawn(Terminal .. ' nnn -eH') end,
+        { description = 'File manager', group = 'launcher' }
     ),
     awful.key(
         { mod }, 'p',
@@ -199,7 +204,10 @@ client.connect_signal('request::default_keybindings', function()
         ),
         awful.key(
             { mod }, 'f',
-            function(c) c.fullscreen = not c.fullscreen c:raise() end,
+            function(c)
+                c.fullscreen = not c.fullscreen
+                c:raise()
+            end,
             { description = 'toggle fullscreen', group = 'client' }
         ),
         awful.key(
@@ -220,17 +228,26 @@ client.connect_signal('request::default_keybindings', function()
 
         awful.key(
             { mod }, 'm',
-            function(c) c.maximized = not c.maximized c:raise() end,
+            function(c)
+                c.maximized = not c.maximized
+                c:raise()
+            end,
             { description = '(un)maximize', group = 'client' }
         ),
         awful.key(
             { mod, ctrl }, 'm',
-            function(c) c.maximized_vertical = not c.maximized_vertical c:raise() end,
+            function(c)
+                c.maximized_vertical = not c.maximized_vertical
+                c:raise()
+            end,
             { description = '(un)maximize vertically', group = 'client' }
         ),
         awful.key(
             { mod, shift }, 'm',
-            function(c) c.maximized_horizontal = not c.maximized_horizontal c:raise() end,
+            function(c)
+                c.maximized_horizontal = not c.maximized_horizontal
+                c:raise()
+            end,
             { description = '(un)maximize horizontally', group = 'client' }
         ),
 
